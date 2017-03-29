@@ -1,0 +1,12 @@
+.clearfix {display:block;}
+.clearfix:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
+
+.text-overflow{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+}
+
+@function size($px){
+    @return $px / 51px * 1rem;
+}

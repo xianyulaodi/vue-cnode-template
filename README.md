@@ -112,5 +112,74 @@ views/index.vue
  ```
  components: {cHeader,indexItem}
  ```
+ ## vur-router
+1. 我这边使用的是vue-router2.0版本，遇到了一个坑，就是vue-router跳转之后，再回来，会刷新一次页面。比如我从a页面跳转到b页面，再从b页面返回a页面，那么a页面会刷新一次。这样存在的一个问题就是，我a页面又必须再请求一次数据，或者说，我a页面上传浏览的状态不能够保存。现在还没有找到很好的解决办法，包括使用html5的本地存储也没能很好的解决这个问题。
+2. 传参之后，改页面如何获取传过来的参数呢，可以用这个方法，比如我在router中传了一个id到b页面，那么b页面使用的时候可以用下面的代码来获取
+ ```
+ this.$route.params.id
+ ```
+
+ >关于vue-router就介绍这些，因为可以看文档或者看代码就可以了解完，难度不是很大
  
+## vuex2.0
+
+  刚开始看了vuex的文档，发觉跟redux很像，因为它确实有参照redux的思想来写，后来在使用过程中，发觉vuex还是跟redux有挺大的不同的。不过两者的一个相同点就是都是属于状态管理器，只有当你的页面有足够多的状态的时候才需要使用，否则没必要用，小项目用vuex之后增加代码的复杂性而已。
+   ![vuex示意图](https://vuex.vuejs.org/zh-cn/images/vuex.png)
+   
+#### 这里稍作解释：(个人理解，有误之处，欢迎指出)
+ - vuex也是跟redux一样，有且只能由一个store
+ - 在vuex中，状态的改变只能是通过mutations
+ - 用户改变状态有两种方式：第一种是触发action,然后action再来触发mutations;第二种方式是用户直接出发mutations
+ - mutations只能处理同步的状态，而action既能处理同步，也能处理异步,这也是action存在的理由，一般异步的状态管理交给action去做即可，同步的话可以直接触发mutations
+ - 触发action用dispatch、触发mutations用commit
+ 
+### 这里介绍一下vuex异步的操作
+   跟redux一样，理解异步状态管理还是比较难的，不过当你理解了异步的操作，你也就基本掌握vuex了。
+   假设我有一个异步请求，需要请求后台的数据，那么需要怎么做呢？   
+```
+import Vue from 'vue';
+import axios from 'axios';
+import * as types from '../../constants/constants';
+const state = {
+    topicsList:[]
+};
+const getters = {
+    getTopicsListData: state => state.topicsList
+};
+const actions = {
+	/**
+     * @name  获取主页数据
+     * 异步的操作交给action,然后将获取到的数据 commit 到 mutations那里去
+     * 
+     * # 注意点：
+     * 坑点：vuex2只能有两个参数，所以如果你的第二个参数中有多个参数，可以用对象的形式,实际的项目中貌似通过router中来传的，待定
+     */
+    [types.GET_TOPICS]({commit},obj) {
+        axios.get(`https://cnodejs.org/api/v1/topics?page=${obj.pageNo}&limit=20&tab=${obj.tab}`)
+        .then((response) => {
+          commit(types.SET_TOPICS, { list: response.data.data })
+        }, (err) => {
+          console.log(err)
+        })
+    }  
+}
+const mutations = {
+    // 获取首页的数据
+    [types.SET_TOPICS](state,{list}) {
+        state.topicsList=list;  //再次记住，mutations是唯一允许更新应用状态的地方
+    }
+};
+export default{
+    state,
+    getters,
+    actions,
+    mutations
+}
+```
+    如上面的代码所示，我们通过axios来发送我们的请求，具体的流程如下：
+1. 我们定义了一个默认的状态topicsList，并赋值为一个空数组
+2. 我没给你定义了一个action来获取后端数据， `[types.GET_TOPICS]({commit},obj) {}`,其实这里也可以直接用方法名，只是vuex遵循flux的写法。也就是说这里其实也是可以写成`getTopics({commit},obj) {}这种形式的。
+   action的方法里，只能由两个参数，一个是默认的commmit,一个是其他参数，所以当你的异步请求有多个参数的时候，需要把它封装到一个对象或者数组里面。
+3. 我们在前面定义了一个默认的装填topicsList,前面也说了，状态的改变只能交给mutations来做，所以action获取到的数据，如果要传到topicsList这个状态中，必须要先交给mutations，再由mutations来更新topicsList。所以，获取到后端返回的数据之后，我们commit给mutations，然后mutations再来更新topicsList这个状态
+4. 在上面的代码中，我们有看到getters，干嘛用的呢？有一个情况是这样的，比如我渲染一个页面的时候，页面已经渲染完了，但是你的请求数据是异步的，数据还没有回来，那怎么办呢？getters就是这个作用的
  #### 先下班了，持续更新。。。

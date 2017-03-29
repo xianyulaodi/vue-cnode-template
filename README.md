@@ -178,7 +178,7 @@ export default{
 ```
     如上面的代码所示，我们通过axios来发送我们的请求，具体的流程如下：
 1. 我们定义了一个默认的状态topicsList，并赋值为一个空数组
-2. 我没给你定义了一个action来获取后端数据， `[types.GET_TOPICS]({commit},obj) {}`,其实这里也可以直接用方法名，只是vuex遵循flux的写法。也就是说这里其实也是可以写成`getTopics({commit},obj) {}这种形式的。
+2. 我们定义了一个action来获取后端数据， `[types.GET_TOPICS]({commit},obj) {}`,其实这里也可以直接用方法名，只是vuex遵循flux的写法。也就是说这里其实也是可以写成`getTopics({commit},obj) {}`这种形式的。
    action的方法里，只能由两个参数，一个是默认的commmit,一个是其他参数，所以当你的异步请求有多个参数的时候，需要把它封装到一个对象或者数组里面。
 3. 我们在前面定义了一个默认的装填topicsList,前面也说了，状态的改变只能交给mutations来做，所以action获取到的数据，如果要传到topicsList这个状态中，必须要先交给mutations，再由mutations来更新topicsList。所以，获取到后端返回的数据之后，我们commit给mutations，然后mutations再来更新topicsList这个状态
 4. 在上面的代码中，我们有看到getters，干嘛用的呢？有一个情况是这样的，比如我渲染一个页面的时候，页面已经渲染完了，但是你的请求数据是异步的，数据还没有回来，那怎么办呢？getters就是这个作用的

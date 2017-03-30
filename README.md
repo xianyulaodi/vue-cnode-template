@@ -18,15 +18,15 @@
     `npm run unit`
 
 ## 项目说明
->    之前玩react比较多，因为在新公司有些项目打算用vue，所以打算也来玩玩vue,不过是直接入手vue2,为了怕自己忘记，所以打算来个小小的总结,不过本文是一篇大杂烩，因为要写vue、vue-router和vuex这三者
+&ensp;&ensp;之前玩react比较多，因为在新公司有些项目打算用vue，所以打算也来玩玩vue,不过是直接入手vue2,为了怕自己忘记，所以打算来个小小的总结,不过本文是一篇大杂烩，因为要写vue、vue-router和vuex这三者
 
 ## vue组件的生命周期
->如果你之前有玩过react，那么就可以拿这些生命周期和react的进行一个类比了。组件的生命周期图如下：
+&ensp;&ensp;如果你之前有玩过react，那么就可以拿这些生命周期和react的进行一个类比了。组件的生命周期图如下：
 ![组件生命周期](http://images.cnblogs.com/cnblogs_com/fly_dragon/276813/o_lifecycle-%E6%A0%87%E6%B3%A8%E7%89%88%E6%9C%AC.png)
 
 ## 如何写一个组件
 
-vue的读音和view同音，和react一样，也是组件化的一个理想框架，vue中组件化是如何实现的呢？我们以我们的项目为例
+&ensp;&ensp;vue的读音和view同音，和react一样，也是组件化的一个理想框架，vue中组件化是如何实现的呢？我们以我们的项目为例
 >我们的项目中，首页的列表就有用到组件 indexItem组件,代码如下：component/indexItem.vue
 
 ```
@@ -69,7 +69,7 @@ export default {
 
 ```
 
->   我们定义了一个template模板，template数据名称来源于props，所有我们template使用for循环的时候，用的itemList，因为props里面写的是itemList.
+&ensp;&ensp;我们定义了一个template模板，template数据名称来源于props，所有我们template使用for循环的时候，用的itemList，因为props里面写的是itemList.
 那么父组件如何调用这些组件呢，使用方法如下：
 views/index.vue
 ```
@@ -102,13 +102,13 @@ views/index.vue
 </script>
 
 ```
-   如上面的代码所示，我们import我们需要的组件，这里有个注意点，调用组件的时候，不支持驼峰命名法，所以你引用的驼峰命名的组件要拆开，比如引入的是indexItem组件，那么在使用的时候要拆成index-item。
+&ensp;&ensp;如上面的代码所示，我们import我们需要的组件，这里有个注意点，调用组件的时候，不支持驼峰命名法，所以你引用的驼峰命名的组件要拆开，比如引入的是indexItem组件，那么在使用的时候要拆成index-item。
    
-   如何传入数据呢。：[组件props的数据命名]，比如我的indexItem组件中，它的props里面的数据名字为 itemList,所以我父组件传值的时候，也是这样，通过
+&ensp;&ensp;如何传入数据呢。：[组件props的数据命名]，比如我的indexItem组件中，它的props里面的数据名字为 itemList,所以我父组件传值的时候，也是这样，通过
  ```
  <index-item :item-list=传入的数据></index-item>
  ```
-  和引入组件一样，如果组件里面的props的命名是驼峰命名方式的话，也是需要拆开的。这里还有个需要注意点，我们不必在全局注册每个组件。通过使用组件实例选项注册，可以使组件仅在另一个实例/组件的作用域中可用。所以我们的项目中，我们应用了什么组件，在compontents里面就要写上对应的组件名称。如代码
+&ensp;&ensp;和引入组件一样，如果组件里面的props的命名是驼峰命名方式的话，也是需要拆开的。这里还有个需要注意点，我们不必在全局注册每个组件。通过使用组件实例选项注册，可以使组件仅在另一个实例/组件的作用域中可用。所以我们的项目中，我们应用了什么组件，在compontents里面就要写上对应的组件名称。如代码
  ```
  components: {cHeader,indexItem}
  ```
@@ -123,7 +123,7 @@ views/index.vue
  
 ## vuex2.0
 
-  刚开始看了vuex的文档，发觉跟redux很像，因为它确实有参照redux的思想来写，后来在使用过程中，发觉vuex还是跟redux有挺大的不同的。不过两者的一个相同点就是都是属于状态管理器，只有当你的页面有足够多的状态的时候才需要使用，否则没必要用，小项目用vuex之后增加代码的复杂性而已。
+&ensp;&ensp;刚开始看了vuex的文档，发觉跟redux很像，因为它确实有参照redux的思想来写，后来在使用过程中，发觉vuex还是跟redux有挺大的不同的。不过两者的一个相同点就是都是属于状态管理器，只有当你的页面有足够多的状态的时候才需要使用，否则没必要用，小项目用vuex之后增加代码的复杂性而已。
    ![vuex示意图](https://vuex.vuejs.org/zh-cn/images/vuex.png)
    
 #### 这里稍作解释：(个人理解，有误之处，欢迎指出)
@@ -134,8 +134,8 @@ views/index.vue
  - 触发action用dispatch、触发mutations用commit
  
 ### 这里介绍一下vuex异步的操作
-   跟redux一样，理解异步状态管理还是比较难的，不过当你理解了异步的操作，你也就基本掌握vuex了。
-   假设我有一个异步请求，需要请求后台的数据，那么需要怎么做呢？   
+&ensp;&ensp;跟redux一样，理解异步状态管理还是比较难的，不过当你理解了异步的操作，你也就基本掌握vuex了。
+&ensp;&ensp;假设我有一个异步请求，需要请求后台的数据，那么需要怎么做呢？   
 ```
 import Vue from 'vue';
 import axios from 'axios';
@@ -176,10 +176,77 @@ export default{
     mutations
 }
 ```
-    如上面的代码所示，我们通过axios来发送我们的请求，具体的流程如下：
+&ensp;&ensp;如上面的代码所示，我们通过axios来发送我们的请求，具体的流程如下：
 1. 我们定义了一个默认的状态topicsList，并赋值为一个空数组
 2. 我们定义了一个action来获取后端数据， `[types.GET_TOPICS]({commit},obj) {}`,其实这里也可以直接用方法名，只是vuex遵循flux的写法。也就是说这里其实也是可以写成`getTopics({commit},obj) {}`这种形式的。
    action的方法里，只能由两个参数，一个是默认的commmit,一个是其他参数，所以当你的异步请求有多个参数的时候，需要把它封装到一个对象或者数组里面。
 3. 我们在前面定义了一个默认的装填topicsList,前面也说了，状态的改变只能交给mutations来做，所以action获取到的数据，如果要传到topicsList这个状态中，必须要先交给mutations，再由mutations来更新topicsList。所以，获取到后端返回的数据之后，我们commit给mutations，然后mutations再来更新topicsList这个状态
-4. 在上面的代码中，我们有看到getters，干嘛用的呢？有一个情况是这样的，比如我渲染一个页面的时候，页面已经渲染完了，但是你的请求数据是异步的，数据还没有回来，那怎么办呢？getters就是这个作用的
+4. 在上面的代码中，我们有看到getters，干嘛用的呢？有一种情况是这样的，比如我渲染一个页面的时候，页面已经渲染完了，但是你的请求数据是异步的，数据还没有回来，那怎么办呢？getters就是这个作用的。我们将mutations更新的状态，传给getters,在getters里面，你可以对这些数据进行一些处理，然后再交给页面使用。
+
+### 页面是如何使用传回来的数据的？
+ 在view/index.vue中，我们看下面的代码，代码是被简化的，只展示出有用的部分
+ 
+ ```
+ <template>
+  <div>
+    <index-item :item-list='topicsListData'></index-item>
+  </div>
+</template>
+
+<script>
+  import Vue from 'vue';
+  import {mapState} from 'vuex';
+  import {mapGetters} from 'vuex';
+  import indexItem from 'components/indexItem';
+  import * as types from '../constants/constants';
+  
+  export default {
+    data () {
+      return {
+        title: 'node中文网'
+      }
+    },
+    // computed相当于属性的一个实时计算，里面的数据如果有变化，会自动去更新
+    computed: mapGetters({
+
+      topicsListData :'getTopicsListData'
+
+    }),
+    methods: {
+
+      /*
+      * @获取内容
+      */
+      getTopics (page,tab,index) {
+          // 触发action
+          this.$store.dispatch({
+              type:types.GET_TOPICS,
+              pageNo:page,
+              tab:tab
+          });
+          this.tabId=index;
+      },
+    },
+    /*
+    * @初始化(组件挂载完成)，相当于react中的componentWillamount
+    */
+    mounted () {
+
+      this.getTopics(1,'all'); 
+      
+    },
+    components: {indexItem}
+  }
+</script>
+ ```
+>&ensp;&ensp;我们可以看到，在代码中，我们定义了一个方法 `getTopics`，它的作用是发送一个action,并传一些参数进去。页面初始化的时候，我们执行这个方法。也就是mounted里面，我们执行了getTopics这个函数。
+
+   我们还看到，代码中，我们在computed里面执行了mapGetters，并在里面写入了getters对象，如代码所示：
+   ` computed: mapGetters({
+      topicsListData :'getTopicsListData'
+    }),`
+    
+ >&ensp;&ensp;这里稍作解释，computed的作用就是：它相当于一个实时计算，如果里面的内容对应的数据有变化，就会去自动更新里面的数据，并且重新渲染。而mapGetters是映射对应的getters，代码以键值对的形式，`topicsListData :'getTopicsListData`,其中指要和getters里面定义的相对应。比如我getter定义的值为getTopicsListData，mapGetters里面对象的值也要写为getTopicsListData。
+ 
+>&ensp;&ensp;而topicsListData则是你需要传到组件中的数据，`<index-item :item-list='topicsListData'></index-item>`;在异步获取的数据中，如果要传给组件，只能从gettter这里去拿，不然是获取不到后端返回的数据的。因为有一个先后的问题
  #### 先下班了，持续更新。。。

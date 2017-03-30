@@ -241,12 +241,18 @@ export default{
  ```
 >&ensp;&ensp;我们可以看到，在代码中，我们定义了一个方法 `getTopics`，它的作用是发送一个action,并传一些参数进去。页面初始化的时候，我们执行这个方法。也就是mounted里面，我们执行了getTopics这个函数。
 
-   我们还看到，代码中，我们在computed里面执行了mapGetters，并在里面写入了getters对象，如代码所示：
+   我们还看到，代码中，我们在computed里面执行了mapGetters，并在里面写入了getters对象，如代码所示：  
+   
    ` computed: mapGetters({
       topicsListData :'getTopicsListData'
     }),`
     
- >&ensp;&ensp;这里稍作解释，computed的作用就是：它相当于一个实时计算，如果里面的内容对应的数据有变化，就会去自动更新里面的数据，并且重新渲染。而mapGetters是映射对应的getters，代码以键值对的形式，`topicsListData :'getTopicsListData`,其中指要和getters里面定义的相对应。比如我getter定义的值为getTopicsListData，mapGetters里面对象的值也要写为getTopicsListData。
+ >&ensp;&ensp;这里稍作解释，computed的作用就是：它相当于一个实时计算，如果里面的内容对应的数据有变化，就会去自动更新里面的数据，并且重新渲染。而mapGetters是映射对应的getters，代码以键值对的形式：  
+ `topicsListData :'getTopicsListData`  
+ 其中指要和getters里面定义的相对应。比如我getter定义的值为getTopicsListData，mapGetters里面对象的值也要写为getTopicsListData。
  
->&ensp;&ensp;而topicsListData则是你需要传到组件中的数据，`<index-item :item-list='topicsListData'></index-item>`;在异步获取的数据中，如果要传给组件，只能从gettter这里去拿，不然是获取不到后端返回的数据的。因为有一个先后的问题
+>&ensp;&ensp;而topicsListData则是你需要传到组件中的数据，如下所示  
+
+`<index-item :item-list='topicsListData'></index-item>`;  
+在异步获取的数据中，如果要传给组件，只能从gettter这里去拿，不然是获取不到后端返回的数据的。因为有一个先后的问题
  #### 先下班了，持续更新。。。

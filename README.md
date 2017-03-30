@@ -1,12 +1,14 @@
 ## 摘要
-&ensp;&ensp;公司后面的H5项目打算用vue2来做，之前有用过一小会vue，但没有真正的去了解，之前框架来说用react用的比较多点。所以趁这个阶段，用cnode中文网提供的api来做了个入门的脚手架，如果脚手架搭好并理解了，那么后面的运用就轻松多了。
+&ensp;&ensp;公司后面的H5项目打算用vue2来做，之前有用过一小会vue，但没有真正的去了解，之前框架来说用react用的比较多点。所以趁这个阶段，用cnode中文网提供的api来做了个入门的脚手架，如果脚手架搭好并理解了，那么后面的运用就轻松多了。<br/> 
+
 &ensp;&ensp;vue目前在中国来说应该是属于最火的一个前端框架吧，当然，对框架还是一样的态度，如果项目中要用，就去研究它，否则，只需要去了解它。因为之前有react的一些项目经验，而且两者有一些共同性，所以vue的入门来说还是相当比较容易的，主要做的是勤查文档。
-&ensp;ensp;由于时间有限，没有对cnode中文网进行完全的重构，只重构了首页和详情页，因为这样比较容易理解，如果整个重构了，对于初学来说，比较难看懂，完成后的界面如图所示:(没怎么搞样式，界面巨丑)
+
+&ensp;&ensp;由于时间有限，没有对cnode中文网进行完全的重构，只重构了首页和详情页，因为这样比较容易理解，如果整个重构了，对于初学来说，比较难看懂，完成后的界面如图所示:(没怎么搞样式，界面巨丑)
 
 ![首页](http://images2015.cnblogs.com/blog/776370/201703/776370-20170330192330508-241902663.png);&ensp;&ensp;
 ![详情页](http://images2015.cnblogs.com/blog/776370/201703/776370-20170330192446461-1898007541.png);
-## 项目简介
 
+## 项目简介
 基于vue.js的前端开发环境，用于前后端开发的单页面应用，可以在开发的时候使用ES2015 、scss等。项目包含：
 
 - 基础库：`vue.js`、 `vue-router2.0版本`、`vuex`、`axios`
@@ -32,7 +34,6 @@
 ![组件生命周期](http://images.cnblogs.com/cnblogs_com/fly_dragon/276813/o_lifecycle-%E6%A0%87%E6%B3%A8%E7%89%88%E6%9C%AC.png)
 
 ## 如何写一个组件
-
 &ensp;&ensp;vue的读音和view同音，和react一样，也是组件化的一个理想框架，vue中组件化是如何实现的呢？我们以我们的项目为例
 >我们的项目中，首页的列表就有用到组件 indexItem组件,代码如下：component/indexItem.vue
 
@@ -125,11 +126,9 @@ views/index.vue
  ```
  this.$route.params.id
  ```
-
- >关于vue-router就介绍这些，因为可以看文档或者看代码就可以了解完，难度不是很大
+关于vue-router就介绍这些，因为可以看文档或者看代码就可以了解完，难度不是很大
  
 ## vuex2.0
-
 &ensp;&ensp;刚开始看了vuex的文档，发觉跟redux很像，因为它确实有参照redux的思想来写，后来在使用过程中，发觉vuex还是跟redux有挺大的不同的。不过两者的一个相同点就是都是属于状态管理器，只有当你的页面有足够多的状态的时候才需要使用，否则没必要用，小项目用vuex之后增加代码的复杂性而已。
    ![vuex示意图](https://vuex.vuejs.org/zh-cn/images/vuex.png)
    
@@ -246,9 +245,9 @@ export default{
   }
 </script>
  ```
->&ensp;&ensp;我们可以看到，在代码中，我们定义了一个方法 `getTopics`，它的作用是发送一个action,并传一些参数进去。页面初始化的时候，我们执行这个方法。也就是mounted里面，我们执行了getTopics这个函数。  
->&ensp;&ensp;我们还看到，代码中，我们在computed里面执行了mapGetters，并在里面写入了getters对象，如代码所示：  
->&ensp;&ensp;  
+&ensp;&ensp;我们可以看到，在代码中，我们定义了一个方法 `getTopics`，它的作用是发送一个action,并传一些参数进去。页面初始化的时候，我们执行这个方法。也就是mounted里面，我们执行了getTopics这个函数。  
+&ensp;&ensp;我们还看到，代码中，我们在computed里面执行了mapGetters，并在里面写入了getters对象，如代码所示：  
+&ensp;&ensp;  
 ``` 
 computed: mapGetters({
     topicsListData :'getTopicsListData'
@@ -256,18 +255,21 @@ computed: mapGetters({
  ```
     
     
- >&ensp;&ensp;这里稍作解释，computed的作用就是：它相当于一个实时计算，如果里面的内容对应的数据有变化，就会去自动更新里面的数据，并且重新渲染。而mapGetters是映射对应的getters，代码以键值对的形式：  
+&ensp;&ensp;这里稍作解释，computed的作用就是：它相当于一个实时计算，如果里面的内容对应的数据有变化，就会去自动更新里面的数据，并且重新渲染。而mapGetters是映射对应的getters，代码以键值对的形式：  
  
  `topicsListData :'getTopicsListData`  
  
  &ebso;&ensp其中指要和getters里面定义的相对应。比如我getter定义的值为getTopicsListData，mapGetters里面对象的值也要写为getTopicsListData。
  
->&ensp;&ensp;而topicsListData则是你需要传到组件中的数据，如下所示  
+&ensp;&ensp;而topicsListData则是你需要传到组件中的数据，如下所示  
   
   
 `<index-item :item-list='topicsListData'></index-item>`;  
 
 
-在异步获取的数据中，如果要传给组件，只能从gettter这里去拿，不然是获取不到后端返回的数据的。因为有一个先后的问题  
-###对于vue2和vue-router2.0以及vuex2的总结就先到这里，主要是自己在第一次使用中遇到的问题。后面将进入实战阶段，不过脚手架搭好了，后面的问题就是一直参考文档和埋坑就可以了。当然，因为对vue2的认识时间不是特别长，所以这篇文章难免有些错误，有误之处，欢迎指出
+在异步获取的数据中，如果要传给组件，只能从gettter这里去拿，不然是获取不到后端返回的数据的。因为有一个先后的问题 
+ 
+- 对于vue2和vue-router2.0以及vuex2的总结就先到这里，主要是自己在第一次使用中遇到的问题。
+- 后面将进入实战阶段，不过脚手架搭好了，后面的问题就是一直参考文档和埋坑就可以了。
+- 当然，因为对vue2的认识时间不是特别长，所以这篇文章难免有些错误，有误之处，欢迎指出
 

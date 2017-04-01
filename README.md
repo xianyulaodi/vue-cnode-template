@@ -37,7 +37,7 @@
 &ensp;&ensp;vue的读音和view同音，和react一样，也是组件化的一个理想框架，vue中组件化是如何实现的呢？我们以我们的项目为例
 >我们的项目中，首页的列表就有用到组件 indexItem组件,代码如下：component/indexItem.vue
 
-```
+```html
 <template>
 	 <div class="item-list-wrap">
         <ul class="item-list">
@@ -80,7 +80,7 @@ export default {
 &ensp;&ensp;我们定义了一个template模板，template数据名称来源于props，所有我们template使用for循环的时候，用的itemList，因为props里面写的是itemList.
 那么父组件如何调用这些组件呢，使用方法如下：
 views/index.vue
-```
+```html
 <template>
   <div>
     <c-header :hTitle="title"></c-header>

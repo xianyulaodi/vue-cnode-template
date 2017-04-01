@@ -16,13 +16,14 @@
 - 本地服务器：`express`
 
 ## 运行方式
+* 开发环境
 1. `npm install` 
 2. 点击start.sh、或者直接cmd里面输入  `npm run dev`
-3. 配置构建项目，构建好的文件会输出到 "dist" 目录，
+*  配置构建项目，构建好的文件会输出到 "dist" 目录，
     `npm run build`
-4. 服务器，可以查看构建的页面
+* 服务器，可以查看构建的页面
     `npm run build-server`
-5. 单元测试
+* 单元测试
     `npm run unit`
 
 ## 项目说明

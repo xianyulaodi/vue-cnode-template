@@ -113,11 +113,11 @@ views/index.vue
 &ensp;&ensp;如上面的代码所示，我们import我们需要的组件，这里有个注意点，调用组件的时候，不支持驼峰命名法，所以你引用的驼峰命名的组件要拆开，比如引入的是indexItem组件，那么在使用的时候要拆成index-item。
    
 &ensp;&ensp;如何传入数据呢。：[组件props的数据命名]，比如我的indexItem组件中，它的props里面的数据名字为 itemList,所以我父组件传值的时候，也是这样，通过
- ```
+ ```html
  <index-item :item-list=传入的数据></index-item>
  ```
 &ensp;&ensp;和引入组件一样，如果组件里面的props的命名是驼峰命名方式的话，也是需要拆开的。这里还有个需要注意点，我们不必在全局注册每个组件。通过使用组件实例选项注册，可以使组件仅在另一个实例/组件的作用域中可用。所以我们的项目中，我们应用了什么组件，在compontents里面就要写上对应的组件名称。如代码
- ```
+ ```javascript
  components: {cHeader,indexItem}
  ```
  ## vur-router
@@ -142,7 +142,7 @@ views/index.vue
 ### 这里介绍一下vuex异步的操作
 &ensp;&ensp;跟redux一样，理解异步状态管理还是比较难的，不过当你理解了异步的操作，你也就基本掌握vuex了。
 &ensp;&ensp;假设我有一个异步请求，需要请求后台的数据，那么需要怎么做呢？   
-```
+```javascript
 import Vue from 'vue';
 import axios from 'axios';
 import * as types from '../../constants/constants';
@@ -192,7 +192,7 @@ export default{
 ### 页面是如何使用传回来的数据的？
  在view/index.vue中，我们看下面的代码，代码是被简化的，只展示出有用的部分
  
- ```
+ ```html
  <template>
   <div>
     <index-item :item-list='topicsListData'></index-item>
@@ -248,7 +248,7 @@ export default{
 &ensp;&ensp;我们可以看到，在代码中，我们定义了一个方法 `getTopics`，它的作用是发送一个action,并传一些参数进去。页面初始化的时候，我们执行这个方法。也就是mounted里面，我们执行了getTopics这个函数。  
 &ensp;&ensp;我们还看到，代码中，我们在computed里面执行了mapGetters，并在里面写入了getters对象，如代码所示：  
 &ensp;&ensp;  
-``` 
+``` javascript
 computed: mapGetters({
     topicsListData :'getTopicsListData'
 }),
